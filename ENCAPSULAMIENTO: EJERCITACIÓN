@@ -1,1 +1,166 @@
+ENCAPSULAMIENTO :
 
+1_ RTA:
+
+class Coche:
+    def __init__(self):
+        self.__marca = ""
+        self.__modelo = ""
+        self.__anio = 0
+
+    def set_marca(self, marca):
+        self.__marca = marca
+
+    def set_modelo(self, modelo):
+        self.__modelo = modelo
+
+    def set_anio(self, anio):
+        self.__anio = anio
+
+    def get_marca(self):
+        return self.__marca
+
+    def get_modelo(self):
+        return self.__modelo
+
+    def get_anio(self):
+        return self.__anio
+
+    #  información
+    def mostrar_informacion(self):
+        print("Marca:", self.__marca)
+        print("Modelo:", self.__modelo)
+        print("Año:", self.__anio)
+
+
+
+mi_coche = Coche()
+mi_coche.set_marca("Toyota")
+mi_coche.set_modelo("Corolla")
+mi_coche.set_anio(2020)
+
+mi_coche.mostrar_informacion()
+
+
+2_ RTA:
+
+class Persona:
+    def __init__(self):
+        self.__nombre = ""
+        self.__edad = 0
+        self.__sexo = ""
+
+    
+    def set_nombre(self, nombre):
+        self.__nombre = nombre
+
+    def set_edad(self, edad):
+        self.__edad = edad
+
+    def set_sexo(self, sexo):
+        self.__sexo = sexo
+
+    # Getters
+    def get_nombre(self):
+        return self.__nombre
+
+    def get_edad(self):
+        return self.__edad
+
+    def get_sexo(self):
+        return self.__sexo
+
+   
+    def cambiar_edad(self, nueva_edad):
+        self.__edad = nueva_edad
+
+    
+    def mostrar_informacion(self):
+        print("Nombre:", self.__nombre)
+        print("Edad:", self.__edad)
+        print("Sexo:", self.__sexo)
+
+
+
+persona1 = Persona()
+persona1.set_nombre("Juan")
+persona1.set_edad(25)
+persona1.set_sexo("Masculino")
+
+persona1.mostrar_informacion()
+
+
+persona1.cambiar_edad(30)
+print("\nDespués de cambiar la edad:")
+persona1.mostrar_informacion()
+
+
+
+3_RTA:
+class CuentaBancaria:
+    def __init__(self):
+        self.__titular = ""
+        self.__saldo = 0.0
+        self.__numero_cuenta = ""
+
+    # Setters
+    def set_titular(self, titular):
+        self.__titular = titular
+
+    def set_numero_cuenta(self, numero):
+        self.__numero_cuenta = numero
+
+    def set_saldo_inicial(self, saldo):
+        if saldo >= 0:
+            self.__saldo = saldo
+
+    # Getters
+    def get_titular(self):
+        return self.__titular
+
+    def get_saldo(self):
+        return self.__saldo
+
+    def get_numero_cuenta(self):
+        return self.__numero_cuenta
+
+    # Método para depositar dinero
+    def depositar(self, monto):
+        if monto > 0:
+            self.__saldo += monto
+            print(f"Depósito exitoso: ${monto}")
+        else:
+            print("El monto debe ser positivo.")
+
+    # Método para retirar dinero
+    def retirar(self, monto):
+        if monto <= 0:
+            print("El monto debe ser mayor que cero.")
+        elif monto > self.__saldo:
+            print("Fondos insuficientes.")
+        else:
+            self.__saldo -= monto
+            print(f"Retiro exitoso: ${monto}")
+
+    # Mostrar información
+    def mostrar_informacion(self):
+        print("Titular:", self.__titular)
+        print("Número de cuenta:", self.__numero_cuenta)
+        print("Saldo disponible: $", self.__saldo)
+
+
+# Ejemplo de uso
+cuenta = CuentaBancaria()
+cuenta.set_titular("Ana Martínez")
+cuenta.set_numero_cuenta("123456789")
+cuenta.set_saldo_inicial(1000)
+
+cuenta.mostrar_informacion()
+
+print("\n--- Operaciones ---")
+cuenta.depositar(500)
+cuenta.retirar(200)
+cuenta.retirar(2000)  # Esto debería dar error por saldo insuficiente
+
+print("\n--- Estado final ---")
+cuenta.mostrar_informacion()
